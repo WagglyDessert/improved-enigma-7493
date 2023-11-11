@@ -25,7 +25,7 @@ RSpec.describe Dish, type: :feature do
     
   end
   describe "dish show page" do
-    it "shows movie title, year, and genre" do
+    it "shows dish name and description and ingredients and calories" do
       # Story 1 of 3
       # As a visitor
       # When I visit a dish's show page
@@ -64,7 +64,7 @@ RSpec.describe Dish, type: :feature do
     visit "/dishes/#{@dish1.id}"
     expect(page).to have_field(:ingredient_id)
     fill_in :ingredient_id, with: @ingredient6.id
-    click_button("submit")
+    click_button("Add Ingredient")
     expect(current_path).to eq "/dishes/#{@dish1.id}"
     expect(page).to have_content(@ingredient6.name)
     end

@@ -4,8 +4,15 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  get "/dishes/:id", to: "dishes#show"
-  patch "/dishes/:id", to: "dishes#update"
+  #joins-y approach per turing
+  resources :dishes, only: [:show] do 
+    resources :ingredients, only: [:create, :destroy], controller: "dish_ingredients"
+  end
+
+  #rails-y approach used with ingredients controller
+  # resources :dishes, only: [] do 
+  #   resources :ingredients, only: :create
+  # end
 
   get "/chefs/:id", to: "chefs#show"
 
